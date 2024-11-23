@@ -6,9 +6,11 @@ load("musig.sage")
 if len(sys.argv) > 1:
     # Join the arguments (in case the input contains spaces) and print it
     message = ' '.join(sys.argv[1:])
-    print('attampting to sign the message \"' + message + '\"')
+    print('Attampting to sign the message \"' + message + '\"')
+    print()
 else:
-    print("No input provided.")
+    print(f"Usage: sage signing_test.sage <message to sign>")
+    exit()
 
 signers = [Signer(), Signer(), Signer()]
 
@@ -22,15 +24,8 @@ z_s = [signer.sign_3(1, Rs, message, PKs) for signer in signers]
 
 multi_sig = (aggregate_nonces(Rs), aggregate_psigs(z_s))
 
-print(verify(multi_sig, PKs, message))
-
-
-print("successfully generated Alice and Bob")
-print(PKs)
-print(Ts)
-print(Rs)
-print(z_s)
-
-print()
-print('final signature:')
+print('Final signature (R, z):')
 print(multi_sig)
+print()
+print("Does it pass verification?")
+print(verify(multi_sig, PKs, message))

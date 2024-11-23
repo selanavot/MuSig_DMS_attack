@@ -15,8 +15,8 @@ def h_com(R):
     h.update(ec_point_to_bytes(R))
     return h.hexdigest()
 
-# remark: index is 1-indexed.
-def h_agg(index, PKs):
+
+def h_agg(index, PKs): # remark: index is 1-indexed.
     assert 1 <= index and index <= len(PKs)
     h = hashlib.new('sha256')
     h.update(b"agg")

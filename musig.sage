@@ -61,8 +61,7 @@ def aggregate_keys(PKs):
         output = output + (aggregation_coefficient(i+1, PKs) * PKs[i])
     return output
 
-# index is one-indexed.
-def aggregation_coefficient(index, PKs):
+def aggregation_coefficient(index, PKs): # index is one-indexed.
     return h_agg(index, PKs)
 
 def aggregate_nonces(Rs):
@@ -84,12 +83,6 @@ def agg_verify(signature, agg_PK, message):
     R, z = signature
     assert 0 <= z < q
     c = h_sign(R, agg_PK, message)
-    # print('actual c:')
-    # print(c)
-    # print('z*G:')
-    # print(z*G)
-    # print('R + (c * agg_PK):')
-    # print(R + (c * agg_PK))
     return z * G == R + (c * agg_PK)
 
 def verify(signature, PKs, message):
