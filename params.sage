@@ -4,7 +4,7 @@ A toy setup of the secp256k elliptic curve and the hash functions used in the to
 There are likely implementation based vulnerabilities, but this is besides the point. Our attack does not abuse them, and would work even if the implementation was perfect.
 '''
 
-# Setup the secp256k curve 
+# Setup the secp256k1 curve 
 p = 2^256 - 2^32 - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1
 F = GF(p)
 secp256k = EllipticCurve(F, [0, 7])
@@ -39,7 +39,7 @@ def h_sign(agg_nonce, agg_key, message):
     h.update(message.encode())
     return int(h.hexdigest(), base = 16)
 
-# utility functions
+# utility function
 def ec_point_to_bytes(point):
     x, y = point.xy()
     x_int = int(x)
