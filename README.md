@@ -2,7 +2,7 @@
 
 This is a Sage implementation of the attack against MuSig when used insecurely with delayed message selection, presented in [Eprint 2024/437](https://eprint.iacr.org/2024/437).
 
-We present the attack against our toy implementation of MuSig, that can be found in `musig.sage`, implemented over with SHA256 and our toy implementation of the [secp256k1 curve](https://en.bitcoin.it/wiki/Secp256k1).
+We present the attack against our toy implementation of MuSig, that can be found in `musig.sage`, implemented over SHA256 and our toy implementation of the [secp256k1 curve](https://en.bitcoin.it/wiki/Secp256k1).
 
 **Requirements:** To try it out, you must first install [SageMath](https://www.sagemath.org/).
 
