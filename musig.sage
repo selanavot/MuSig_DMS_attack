@@ -1,3 +1,10 @@
+'''
+A toy implementation of the INSECURE MuSig signature scheme.
+The volnurability is that messages are selected after the second signing round.
+
+There are likely other implementation based vulnerabilities, but this is besides the point.
+'''
+
 load("params.sage")
 
 class Signer():
@@ -8,7 +15,7 @@ class Signer():
 
     def key_gen(self):
         assert self.session_counter == 0
-        sk = randint(0, q)   # TODO: Change to cryptographic PRNG
+        sk = randint(0, q)   # Not done: cryptographic PRNG. Unrelated to the attack.
         pk = sk * G
         self.key = (sk, pk)
         return pk
@@ -21,6 +28,7 @@ class Signer():
         self.session_states[self.session_counter] = SessionState(r, R, t)
         return t
     
+    # The vulnerability we are demostrating is that the message is not selected here.
     def sign_2(self, session, Ts, me):
         state = self.session_states[session]
         assert state.round == 1
@@ -31,7 +39,8 @@ class Signer():
         state.round += 1
         return state.R
     
-    def sign_3(self, session, Rs, message, PKs):  # TODO: verify that input Rs and PKs are on curve
+    # The vulnerability we are demostrating is that the message is selected here, and not at sign_2.
+    def sign_3(self, session, Rs, message, PKs):  # Not done: verify that input Rs and PKs are on curve
         state = self.session_states[session]
         assert state.round == 2
         assert Rs[state.me - 1] == state.R

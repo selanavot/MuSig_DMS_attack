@@ -1,3 +1,8 @@
+'''
+The signing oracle that the adversary interacts with, for the three signing rounds.
+Correct input are verified in the MuSig signing scheme.
+'''
+
 load("params.sage")
 load("musig.sage")
 

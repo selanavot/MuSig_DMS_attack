@@ -12,8 +12,8 @@ group_bit_size = 256
 # executed in the unforgeability game.
 
 
-# Define the template for the group homomorphisms rho_plus and rho_multiply
-# they are used later in the attack.
+# Define the template for the group homomorphisms rho_plus and rho_multiply.
+# They are used later in the attack.
 def rho_plus(inputs, c_s):
     assert len(inputs) == group_bit_size
     assert len(c_s) == group_bit_size
@@ -72,7 +72,7 @@ bin_d = bin(forgery_d)[2:]
 bin_d = bin_d[::-1]
 bin_d = bin_d.ljust(256, '0')
 
-# obtain multi-signatures for adaptively chosen messages.
+# Obtain multi-signatures for adaptively chosen messages.
 # The forgery is possible since choosing messages this late is permitted.
 z_s = []
 for index in range(group_bit_size):
@@ -83,10 +83,10 @@ for index in range(group_bit_size):
     psigs = [signer.signO_3(index + 1, round_2_outputs[index], message, PKs) for signer in signers]
     z_s.append(aggregate_psigs(psigs))
 
-# (forgery_R, forgery_z) is the final forged signature
+# (forgery_R, forgery_z) is the final forged signature.
 forgery_z = rho_plus(z_s, c_s)
 
-# timing ends - end of attack
+# End of attack - stop the timer
 end_time = time.time()
 
 # let's check if the attack succeeded. It should with high probability

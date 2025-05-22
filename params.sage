@@ -1,3 +1,9 @@
+'''
+A toy setup of the secp256k elliptic curve and the hash functions used in the toy MuSig signature scheme, and SHA256 hashing wrapper.
+
+There are likely implementation based vulnerabilities, but this is besides the point. Our attack does not abuse them, and would work even if the implementation was perfect.
+'''
+
 # Setup the secp256k curve 
 p = 2^256 - 2^32 - 2^9 - 2^8 - 2^7 - 2^6 - 2^4 - 1
 F = GF(p)
@@ -7,7 +13,7 @@ identity = 0 * G
 q = G.order()
 
 # set-up the hash functions.
-# TODO: Correct domain hashing (via rejection sapling?)
+# Not done: Correct codomain for hashing, but this is not relevant for the attack. 
 import hashlib
 def h_com(R):
     h = hashlib.new('sha256')

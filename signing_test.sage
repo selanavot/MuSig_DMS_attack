@@ -1,3 +1,8 @@
+'''
+This script is used to test our toy multisignature scheme.
+It generates a signature for a given message using three signers.
+'''
+
 import sys
 load("params.sage")
 load("musig.sage")
@@ -6,7 +11,7 @@ load("musig.sage")
 if len(sys.argv) > 1:
     # Join the arguments (in case the input contains spaces) and print it
     message = ' '.join(sys.argv[1:])
-    print('Attampting to sign the message \"' + message + '\"')
+    print('Attempting to sign the message \"' + message + '\"')
     print()
 else:
     print(f"Usage: sage signing_test.sage <message to sign>")
@@ -28,4 +33,4 @@ print('Final signature (R, z):')
 print(multi_sig)
 print()
 print("Does it pass verification?")
-print(verify(multi_sig, PKs, message))
+print('yes' if verify(multi_sig, PKs, message) else 'no')
